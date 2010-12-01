@@ -12,6 +12,7 @@ import android.content.res.Resources;
 import com.hmd.tk4a.FirstTabActivity;
 import com.hmd.tk4a.SecondTabActivity;
 import com.hmd.tk4a.ThirdTabActivity;
+//import com.hmd.tk4a.FourthTabActivity;
 
 public class Tk4a extends TabActivity {
     
@@ -45,7 +46,13 @@ public class Tk4a extends TabActivity {
         spec.setIndicator("Three", res.getDrawable(R.drawable.ic_tab_artists));
         spec.setContent(intent);
         tabHost.addTab(spec);
-
+        /*
+        intent = new Intent().setClass(this, FourthTabActivity.class);
+        spec = tabHost.newTabSpec("fourth");
+        spec.setIndicator("Four", res.getDrawable(R.drawable.ic_tab_artists));
+        spec.setContent(intent);
+        tabHost.addTab(spec);
+        */
         tabHost.setCurrentTab(0);
     }
 }

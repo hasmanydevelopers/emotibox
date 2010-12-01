@@ -12,7 +12,6 @@ import android.text.ClipboardManager;
 import android.widget.TableLayout.LayoutParams;
 
 public class FirstTabActivity extends Activity {
-    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -28,12 +27,9 @@ public class FirstTabActivity extends Activity {
             "\u262A", "\u2602", "\u270F", "\u265D", "\u2740",
             "\u262D", "\u2603", "\u261B", "\u265E", "\u273F",
             "\u262E", "\u263C", "\u261A", "\u2658", "\u273E",
-            "\u262F", "\u263E", "\u261D", "\u2656", "\u273D",
-            "\u271D", "\u2604", "\u261F", "\u265F", "\u273A",
-            "\u2625", "\u2702", "\u270D", "\u2655", "\u2735"
         };
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/DejaVuSans.ttf");
-        TableLayout table = (TableLayout) findViewById(R.id.maintable);
+        TableLayout table = (TableLayout) findViewById(R.id.table1);
         
         TableRow row = new TableRow(this);
         for (int i = 0; i < chars.length; i++){
@@ -54,7 +50,7 @@ public class FirstTabActivity extends Activity {
                 public void onClick(View v) {
                     ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String ch = v.getTag().toString();
-                    Toast.makeText(getApplicationContext(), "Pasted: " + ch, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Copied to\nClipboard\n: " + ch, Toast.LENGTH_LONG).show();
                     cm.setText(ch);
                 }
             });

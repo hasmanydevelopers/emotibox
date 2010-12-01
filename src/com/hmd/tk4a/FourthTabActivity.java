@@ -11,24 +11,25 @@ import android.widget.TableLayout;
 import android.text.ClipboardManager;
 import android.widget.TableLayout.LayoutParams;
 
-public class ThirdTabActivity extends Activity {
+public class FourthTabActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        setContentView(R.layout.third_tab);
+        setContentView(R.layout.fourth_tab);
         
         String chars[] = {
-            "\u00A9", "\u00AE", "\u2122", "\u2026", "\u221E",
-            "\u00A5", "\u20AC", "\u00A3", "\u0192", "$",
-            "\u2264", "\u2265", "\u2211", "\u00AB", "\u00BB",
-            "\u00E7", "\u222B", "\u00B5", "\u25CA", "\u0131",
-            "\u2206", "\u03A9", "\u2248", "*", "\u00A7",
-            "\u2022", "\u00B6", "\u00AC", "\u2020", "&",
-            "\u00A1", "\u00BF", "\u00F8", "\u00E5", "\u2202",
-            "\u0153", "\u00C6", "\u00E6", "\u03C0", "\u00DF",
+            "\u262F", "\u263E", "\u261D", "\u2656", "\u273D",
+            "\u271D", "\u2604", "\u261F", "\u265F", "\u273A",
+            "\u2625", "\u2702", "\u270D", "\u2655", "\u2735",
+            "\u2645", "\u2647", "\u2646", "\u2659", "\u265F",
+            "\u2654", "\u2655", "\u2656", "\u2657", "\u2658",
+            "\u265A", "\u265B", "\u265C", "\u265D", "\u265E",
+            "\u00F7", "\u2030", "\u221A", "\u2260", "%",
+            "\u02DA", "\u02C6", "\u02DC", "\u02D8", "\u00AF",
+            "\u2211", "\u00BA", "\u00AA", "\u203D", "?",
         };
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/DejaVuSans.ttf");
-        TableLayout table = (TableLayout) findViewById(R.id.table3);
+        TableLayout table = (TableLayout) findViewById(R.id.table4);
         
         TableRow row = new TableRow(this);
         for (int i = 0; i < chars.length; i++){
