@@ -50,7 +50,7 @@ public class FirstTabActivity extends Activity {
                 public void onClick(View v) {
                     ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String ch = v.getTag().toString();
-                    Toast.makeText(getApplicationContext(), "Copied to\nClipboard\n: " + ch, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Copied to Clipboard: " + ch, Toast.LENGTH_LONG).show();
                     cm.setText(ch);
                 }
             });
