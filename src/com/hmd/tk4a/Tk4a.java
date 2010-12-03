@@ -7,6 +7,8 @@ import android.widget.TabHost;
 import android.content.Intent;
 import android.widget.TextView;
 import android.app.TabActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.content.res.Resources;
 import android.widget.TabHost.TabSpec;
 

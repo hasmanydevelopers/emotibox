@@ -10,6 +10,8 @@ import android.graphics.Typeface;
 import android.widget.TableLayout;
 import android.text.ClipboardManager;
 import android.widget.TableLayout.LayoutParams;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class SecondTabActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
@@ -56,5 +58,11 @@ public class SecondTabActivity extends Activity {
             });
             row.addView(button);
         }
+    }
+    
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
     }
 }

@@ -10,8 +10,16 @@ import android.graphics.Typeface;
 import android.widget.TableLayout;
 import android.text.ClipboardManager;
 import android.widget.TableLayout.LayoutParams;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuInflater;
+import android.app.Dialog;
+import android.widget.TextView;
+import android.widget.ImageView;
 
 public class FirstTabActivity extends Activity {
+    static final int DIALOG_ABOUT_ID = 1;
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -56,5 +64,50 @@ public class FirstTabActivity extends Activity {
             });
             row.addView(button);
         }
+    }
+    
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                showDialog(DIALOG_ABOUT_ID);
+                break;
+            case R.id.quit:
+                onQuit();
+                break;
+        }
+        return true;
+    }
+    
+    public void onQuit(){
+        this.finish();
+    }
+    
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog;
+        switch(id) {
+            case DIALOG_ABOUT_ID:
+                /*dialog = new Dialog(getApplicationContext());
+                
+                dialog.setContentView(R.layout.about);
+                dialog.setTitle("About TK4A");
+                
+                TextView text = (TextView) dialog.findViewById(R.id.about_text);
+                text.setText("Hello, this is a custom dialog!");
+                ImageView image = (ImageView) dialog.findViewById(R.id.about_icon);
+                image.setImageResource(R.drawable.ic_dialog_about);
+                */
+                dialog = null;
+                Toast.makeText(getApplicationContext(), "Holy shit", Toast.LENGTH_LONG).show();
+                break;
+            default:
+                dialog = null;
+        }
+        return dialog;
     }
 }
