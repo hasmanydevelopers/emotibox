@@ -21,7 +21,7 @@ public class AboutDialog extends AlertDialog.Builder {
         this.setTitle("About Emotibox");
         this.setMessage("has_many :developers");
         this.setCancelable(true);
-        this.setIcon(R.drawable.ic_menu_info_details);
+        this.setIcon(R.drawable.ic_dialog_about);
         
         this.setPositiveButton("Website", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
