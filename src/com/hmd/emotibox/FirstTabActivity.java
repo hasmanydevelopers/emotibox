@@ -77,7 +77,7 @@ public class FirstTabActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                showDialog(DIALOG_ABOUT_ID);
+                showDialog(0);
                 break;
             case R.id.quit:
                 onQuit();
@@ -90,15 +90,7 @@ public class FirstTabActivity extends Activity {
     }
     
     protected Dialog onCreateDialog(int id) {
-        Dialog dialog;
-        switch(id) {
-            case DIALOG_ABOUT_ID:
-                AlertDialog.Builder builder = new AboutDialog(FirstTabActivity.this);
-                dialog = builder.create();
-                break;
-            default:
-                dialog = null;
-        }
-        return dialog;
+        AlertDialog.Builder builder = new AboutDialog(FirstTabActivity.this);
+        return builder.create();
     }
 }
