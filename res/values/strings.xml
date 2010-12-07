@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tk4a</string>
+    <string name="app_name">Emotibox</string>
+    <string name="about">About</string>
+    <string name="quit">Quit</string>
+    <string name="close">Close</string>
+    <string name="hmd">has_many :developers</string>
+    <string name="github_url">http://github.com/hmd/emotibox</string>
 </resources>

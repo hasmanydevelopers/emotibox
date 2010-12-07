@@ -1,4 +1,4 @@
-package com.hmd.tk4a;
+package com.hmd.emotibox;
 
 import android.view.View;
 import android.os.Bundle;
@@ -11,27 +11,35 @@ import android.widget.TableLayout;
 import android.text.ClipboardManager;
 import android.widget.TableLayout.LayoutParams;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuInflater;
+import android.app.Dialog;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 
-public class SecondTabActivity extends Activity {
+import com.hmd.emotibox.AboutDialog;
+
+public class FirstTabActivity extends Activity {
+    static final int DIALOG_ABOUT_ID = 1;
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        setContentView(R.layout.second_tab);
+        setContentView(R.layout.first_tab);
         
         String chars[] = {
-            "\u2609", "\u2607", "\u2608", "\u2621", "\u2720",
-            "\u260A", "\u260B", "\u260C", "\u260D", "\u2641",
-            "\u2707", "\u2622", "\u2623", "\u2723", "\u2721",
-            "\u261E", "\u261C", "\u271C", "\u271B", "\u2765",
-            "\u2648", "\u2649", "\u264A", "\u264B", "\u264C",
-            "\u264D", "\u264E", "\u264F", "\u2650", "\u2651",
-            "\u2652", "\u2653", "\u262C", "\u262B", "\u2628",
-            "\u2627", "\u2626", "\u2701", "\u2703", "\u2704",
-            "\u270E", "\u2710", "\u2742", "\u2749", "\u2746",
+            "\u2665", "\u2708", "\u263A", "\u266C", "\u2611",
+            "\u2660", "\u260E", "\u263B", "\u266B", "\u2612", 
+            "\u2664", "\u2624", "\u2639", "\u266A", "\u2640",
+            "\u2729", "\u2709", "\u2620", "\u2714", "\u2642",
+            "\u2605", "\u2707", "\u267A", "\u2716", "\u2668",
+            "\u2766", "\u2601", "\u270C", "\u265B", "\u2741",
+            "\u262A", "\u2602", "\u270F", "\u265D", "\u2740",
+            "\u262D", "\u2603", "\u261B", "\u265E", "\u273F",
+            "\u262E", "\u263C", "\u261A", "\u2658", "\u273E",
         };
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/DejaVuSans.ttf");
-        TableLayout table = (TableLayout) findViewById(R.id.table2);
+        TableLayout table = (TableLayout) findViewById(R.id.table1);
         
         TableRow row = new TableRow(this);
         for (int i = 0; i < chars.length; i++){
@@ -52,7 +60,7 @@ public class SecondTabActivity extends Activity {
                 public void onClick(View v) {
                     ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String ch = v.getTag().toString();
-                    Toast.makeText(getApplicationContext(), "Copied to Clipboard: " + ch, Toast.LENGTH_LONG).show();
+                    Toast.makeText(FirstTabActivity.this, "Copied to Clipboard: " + ch, Toast.LENGTH_LONG).show();
                     cm.setText(ch);
                 }
             });
@@ -64,5 +72,33 @@ public class SecondTabActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                showDialog(DIALOG_ABOUT_ID);
+                break;
+            case R.id.quit:
+                onQuit();
+        }
+        return true;
+    }
+    
+    public void onQuit(){
+        this.finish();
+    }
+    
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog;
+        switch(id) {
+            case DIALOG_ABOUT_ID:
+                AlertDialog.Builder builder = new AboutDialog(FirstTabActivity.this);
+                dialog = builder.create();
+                break;
+            default:
+                dialog = null;
+        }
+        return dialog;
     }
 }

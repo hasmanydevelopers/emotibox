@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/layout_root"
-              android:orientation="horizontal"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:padding="10dp"
-              >
-    <ImageView android:id="@+id/about_icon"
-               android:layout_width="wrap_content"
-               android:layout_height="fill_parent"
-               android:layout_marginRight="10dp"
-               />
-    <TextView android:id="@+id/about_text"
-              android:layout_width="wrap_content"
-              android:layout_height="fill_parent"
-              android:textColor="#FFF"
-              />
+    android:id="@+id/layout_root"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp">
+    <TextView android:id="@+id/aboutline1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="#FFF"
+            android:text="@string/hmd" />
+    <TextView android:id="@+id/aboutline2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="#FFF"
+            android:text="@string/github_url" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_buttons"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </LinearLayout>
 </LinearLayout>
+

@@ -1,4 +1,4 @@
-package com.hmd.tk4a;
+package com.hmd.emotibox;
 
 import android.view.View;
 import android.os.Bundle;
@@ -12,12 +12,12 @@ import android.view.MenuInflater;
 import android.content.res.Resources;
 import android.widget.TabHost.TabSpec;
 
-import com.hmd.tk4a.FirstTabActivity;
-import com.hmd.tk4a.SecondTabActivity;
-import com.hmd.tk4a.ThirdTabActivity;
-import com.hmd.tk4a.FourthTabActivity;
+import com.hmd.emotibox.FirstTabActivity;
+import com.hmd.emotibox.SecondTabActivity;
+import com.hmd.emotibox.ThirdTabActivity;
+import com.hmd.emotibox.FourthTabActivity;
 
-public class Tk4a extends TabActivity {
+public class Emotibox extends TabActivity {
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
