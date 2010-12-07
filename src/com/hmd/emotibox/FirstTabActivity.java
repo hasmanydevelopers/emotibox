@@ -15,12 +15,10 @@ import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.app.Dialog;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 
 import com.hmd.emotibox.AboutDialog;
 
 public class FirstTabActivity extends Activity {
-    static final int DIALOG_ABOUT_ID = 1;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

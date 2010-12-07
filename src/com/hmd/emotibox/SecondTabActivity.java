@@ -11,9 +11,15 @@ import android.widget.TableLayout;
 import android.text.ClipboardManager;
 import android.widget.TableLayout.LayoutParams;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuInflater;
+import android.app.Dialog;
+import android.app.AlertDialog;
+
+import com.hmd.emotibox.AboutDialog;
 
 public class SecondTabActivity extends Activity {
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -64,5 +70,25 @@ public class SecondTabActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                showDialog(0);
+                break;
+            case R.id.quit:
+                onQuit();
+        }
+        return true;
+    }
+    
+    public void onQuit(){
+        this.finish();
+    }
+    
+    protected Dialog onCreateDialog(int id) {
+        AlertDialog.Builder builder = new AboutDialog(SecondTabActivity.this);
+        return builder.create();
     }
 }
