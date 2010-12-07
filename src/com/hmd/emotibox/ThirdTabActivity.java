@@ -57,7 +57,7 @@ public class ThirdTabActivity extends Activity {
                 public void onClick(View v) {
                     ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String ch = v.getTag().toString();
-                    Toast.makeText(ThirdTabActivity.this, "Copied to Clipboard: " + ch, Toast.LENGTH_LONG).show();
+                    Toast.makeText(ThirdTabActivity.this, "Copied: " + ch, Toast.LENGTH_SHORT).show();
                     cm.setText(ch);
                 }
             });

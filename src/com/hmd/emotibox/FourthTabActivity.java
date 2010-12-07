@@ -26,12 +26,12 @@ public class FourthTabActivity extends Activity {
         setContentView(R.layout.fourth_tab);
         
         String chars[] = {
-            "\u262F", "\u263E", "\u261D", "\u2656", "\u273D",
+            "\u265C", "\u263E", "\u261D", "\u2656", "\u273D",
             "\u271D", "\u2604", "\u261F", "\u265F", "\u273A",
             "\u2625", "\u2702", "\u270D", "\u2655", "\u2735",
             "\u2645", "\u2647", "\u2646", "\u2659", "\u265F",
             "\u2654", "\u2655", "\u2656", "\u2657", "\u2658",
-            "\u265A", "\u265B", "\u265C", "\u265D", "\u265E",
+            "\u265A", "\u265B", "\u262F", "\u265D", "\u265E",
             "\u00F7", "\u2030", "\u221A", "\u2260", "%",
             "\u02DA", "\u02C6", "\u02DC", "\u02D8", "\u00AF",
             "\u2211", "\u00BA", "\u00AA", "\u203D", "?",
@@ -58,7 +58,7 @@ public class FourthTabActivity extends Activity {
                 public void onClick(View v) {
                     ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String ch = v.getTag().toString();
-                    Toast.makeText(FourthTabActivity.this, "Copied to Clipboard: " + ch, Toast.LENGTH_LONG).show();
+                    Toast.makeText(FourthTabActivity.this, "Copied: " + ch, Toast.LENGTH_SHORT).show();
                     cm.setText(ch);
                 }
             });

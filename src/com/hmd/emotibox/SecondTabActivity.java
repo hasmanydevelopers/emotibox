@@ -26,7 +26,7 @@ public class SecondTabActivity extends Activity {
         setContentView(R.layout.second_tab);
         
         String chars[] = {
-            "\u2609", "\u2607", "\u2608", "\u2621", "\u2720",
+            "\u2609", "\u2708", "\u2608", "\u2621", "\u2720",
             "\u260A", "\u260B", "\u260C", "\u260D", "\u2641",
             "\u2707", "\u2622", "\u2623", "\u2723", "\u2721",
             "\u261E", "\u261C", "\u271C", "\u271B", "\u2765",
@@ -58,7 +58,7 @@ public class SecondTabActivity extends Activity {
                 public void onClick(View v) {
                     ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                     String ch = v.getTag().toString();
-                    Toast.makeText(SecondTabActivity.this, "Copied to Clipboard: " + ch, Toast.LENGTH_LONG).show();
+                    Toast.makeText(SecondTabActivity.this, "Copied: " + ch, Toast.LENGTH_SHORT).show();
                     cm.setText(ch);
                 }
             });
