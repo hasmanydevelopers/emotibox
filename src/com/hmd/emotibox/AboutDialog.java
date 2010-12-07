@@ -33,7 +33,7 @@ public class AboutDialog extends AlertDialog.Builder {
 
         this.setNegativeButton("Repository", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Uri uriUrl = Uri.parse("http://github.com/hmd/emotibox");
+                Uri uriUrl = Uri.parse("http://github.com/hasmanydevelopers/emotibox");
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                 context.startActivity(launchBrowser);
             }

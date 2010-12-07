@@ -19,6 +19,8 @@ import android.app.AlertDialog;
 import com.hmd.emotibox.AboutDialog;
 
 public class SecondTabActivity extends Activity {
+    final static public int ABOUT_DIALOG = 0x10000000;
+    final static public int HELP_DIALOG = 0x20000000;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +28,9 @@ public class SecondTabActivity extends Activity {
         setContentView(R.layout.second_tab);
         
         String chars[] = {
-            "\u2609", "\u2708", "\u2608", "\u2621", "\u2720",
+            "\u2708", "\u2609", "\u2608", "\u2621", "\u2720",
             "\u260A", "\u260B", "\u260C", "\u260D", "\u2641",
-            "\u2707", "\u2622", "\u2623", "\u2723", "\u2721",
+            "\u2707", "\u00A9", "\u2623", "\u2723", "\u2721",
             "\u261E", "\u261C", "\u271C", "\u271B", "\u2765",
             "\u2648", "\u2649", "\u264A", "\u264B", "\u264C",
             "\u264D", "\u264E", "\u264F", "\u2650", "\u2651",
@@ -75,7 +77,10 @@ public class SecondTabActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                showDialog(0);
+                showDialog(ABOUT_DIALOG);
+                break;
+            case R.id.help:
+                showDialog(HELP_DIALOG);
                 break;
             case R.id.quit:
                 onQuit();
@@ -88,7 +93,17 @@ public class SecondTabActivity extends Activity {
     }
     
     protected Dialog onCreateDialog(int id) {
-        AlertDialog.Builder builder = new AboutDialog(SecondTabActivity.this);
+        AlertDialog.Builder builder;
+        switch (id) {
+            case ABOUT_DIALOG:
+                builder = new AboutDialog(SecondTabActivity.this);
+                break;
+            case HELP_DIALOG:
+                builder = new HelpDialog(SecondTabActivity.this);
+                break;
+            default:
+                builder = null;
+        }
         return builder.create();
     }
 }

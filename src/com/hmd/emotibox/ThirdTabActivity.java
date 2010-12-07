@@ -19,6 +19,8 @@ import android.app.AlertDialog;
 import com.hmd.emotibox.AboutDialog;
 
 public class ThirdTabActivity extends Activity {
+    final static public int ABOUT_DIALOG = 0x10000000;
+    final static public int HELP_DIALOG = 0x20000000;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class ThirdTabActivity extends Activity {
         setContentView(R.layout.third_tab);
         
         String chars[] = {
-            "\u00A9", "\u00AE", "\u2122", "\u2026", "\u221E",
+            "\u2622", "\u00AE", "\u2122", "\u2026", "\u221E",
             "\u00A5", "\u20AC", "\u00A3", "\u0192", "$",
             "\u2264", "\u2265", "\u2211", "\u00AB", "\u00BB",
             "\u00E7", "\u222B", "\u00B5", "\u25CA", "\u0131",
@@ -74,7 +76,10 @@ public class ThirdTabActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                showDialog(0);
+                showDialog(ABOUT_DIALOG);
+                break;
+            case R.id.help:
+                showDialog(HELP_DIALOG);
                 break;
             case R.id.quit:
                 onQuit();
@@ -87,7 +92,17 @@ public class ThirdTabActivity extends Activity {
     }
     
     protected Dialog onCreateDialog(int id) {
-        AlertDialog.Builder builder = new AboutDialog(ThirdTabActivity.this);
+        AlertDialog.Builder builder;
+        switch (id) {
+            case ABOUT_DIALOG:
+                builder = new AboutDialog(ThirdTabActivity.this);
+                break;
+            case HELP_DIALOG:
+                builder = new HelpDialog(ThirdTabActivity.this);
+                break;
+            default:
+                builder = null;
+        }
         return builder.create();
     }
 }

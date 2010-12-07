@@ -19,6 +19,8 @@ import android.app.AlertDialog;
 import com.hmd.emotibox.AboutDialog;
 
 public class FirstTabActivity extends Activity {
+    final static public int ABOUT_DIALOG = 0x10000000;
+    final static public int HELP_DIALOG = 0x20000000;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,10 @@ public class FirstTabActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                showDialog(0);
+                showDialog(ABOUT_DIALOG);
+                break;
+            case R.id.help:
+                showDialog(HELP_DIALOG);
                 break;
             case R.id.quit:
                 onQuit();
@@ -88,7 +93,17 @@ public class FirstTabActivity extends Activity {
     }
     
     protected Dialog onCreateDialog(int id) {
-        AlertDialog.Builder builder = new AboutDialog(FirstTabActivity.this);
+        AlertDialog.Builder builder;
+        switch (id) {
+            case ABOUT_DIALOG:
+                builder = new AboutDialog(FirstTabActivity.this);
+                break;
+            case HELP_DIALOG:
+                builder = new HelpDialog(FirstTabActivity.this);
+                break;
+            default:
+                builder = null;
+        }
         return builder.create();
     }
 }

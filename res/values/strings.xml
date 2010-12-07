@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">Emotibox</string>
     <string name="about">About</string>
+    <string name="help">Help</string>
     <string name="quit">Quit</string>
     <string name="close">Close</string>
     <string name="hmd">has_many :developers</string>
-    <string name="github_url">http://github.com/hmd/emotibox</string>
+    <string name="github_url">http://github.com/hasmanydevelopers/emotibox</string>
 </resources>

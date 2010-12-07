@@ -28,22 +28,22 @@ public class Emotibox extends TabActivity {
 
         Intent intent1 = new Intent(this, FirstTabActivity.class);
         TabSpec spec1 = tabHost.newTabSpec("first");
-        spec1.setIndicator("One", res.getDrawable(R.drawable.ic_tab));
+        spec1.setIndicator("One", res.getDrawable(R.drawable.ic_tab1));
         spec1.setContent(intent1);
         
         Intent intent2 = new Intent(this, SecondTabActivity.class);
         TabSpec spec2 = tabHost.newTabSpec("second");
-        spec2.setIndicator("Two", res.getDrawable(R.drawable.ic_tab));
+        spec2.setIndicator("Two", res.getDrawable(R.drawable.ic_tab2));
         spec2.setContent(intent2);
         
         Intent intent3 = new Intent(this, ThirdTabActivity.class);
         TabSpec spec3 = tabHost.newTabSpec("third");
-        spec3.setIndicator("Three", res.getDrawable(R.drawable.ic_tab));
+        spec3.setIndicator("Three", res.getDrawable(R.drawable.ic_tab3));
         spec3.setContent(intent3);
         
         Intent intent4 = new Intent(this, FourthTabActivity.class);
         TabSpec spec4 = tabHost.newTabSpec("fourth");
-        spec4.setIndicator("Four", res.getDrawable(R.drawable.ic_tab));
+        spec4.setIndicator("Four", res.getDrawable(R.drawable.ic_tab4));
         spec4.setContent(intent4);
         
         tabHost.addTab(spec1);
