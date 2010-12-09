@@ -10,7 +10,7 @@ import android.content.DialogInterface;
 
 public class HelpDialog extends AlertDialog.Builder {
     final String INSTRUCTIONS = ""
-        + "Emotibox let you pimp your Social Network experience with UTF8 characters.\n\n"
+        + "Emotibox let you pimp your Social Network experience with Unicode characters.\n\n"
         + "1. Look at the tabs for your favorite character.\n\n"
         + "2. Tap the char to copy it to the clipboard (don't worry if you see a invalid char, it should appear correctly in the browser.\n\n"
         + "3. Go to your Social Network app and paste it.\n\n"
