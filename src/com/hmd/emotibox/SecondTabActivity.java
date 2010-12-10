@@ -28,15 +28,13 @@ public class SecondTabActivity extends Activity {
         setContentView(R.layout.second_tab);
         
         String chars[] = {
-            "\u2708", "\u2609", "\u2608", "\u2621", "\u2720",
-            "\u260A", "\u260B", "\u260C", "\u260D", "\u2641",
-            "\u2707", "\u00A9", "\u2623", "\u2723", "\u2721",
-            "\u261E", "\u261C", "\u271C", "\u271B", "\u2765",
-            "\u2648", "\u2649", "\u264A", "\u264B", "\u264C",
-            "\u264D", "\u264E", "\u264F", "\u2650", "\u2651",
-            "\u2652", "\u2653", "\u262C", "\u262B", "\u2628",
-            "\u2627", "\u2626", "\u2701", "\u2703", "\u2704",
-            "\u270E", "\u2710", "\u2742", "\u2749", "\u2746",
+            "\u261B", "\u261A", "\u261F", "\u261D", "\u270C",
+            "\u270D", "\u270F", "\u270E", "\u2710", "\u2026",
+            "\u2702", "\u2704", "\u2626", "\u2628", "\u2765",
+            "\u2611", "\u2612", "\u2714", "\u2716", "\u2660",
+            "\u2720", "\u262C", "\u262B", "\u2604", "\u2735",
+            "\u273E", "\u273D", "\u2740", "\u273F", "\u2742",
+            "\u2723", "\u2749", "\u2741", "\u2746", "\u273A",
         };
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/DejaVuSans.ttf");
         TableLayout table = (TableLayout) findViewById(R.id.table2);
