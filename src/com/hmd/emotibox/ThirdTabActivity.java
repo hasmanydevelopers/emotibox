@@ -28,14 +28,13 @@ public class ThirdTabActivity extends Activity {
         setContentView(R.layout.third_tab);
         
         String chars[] = {
-            "\u2622", "\u00AE", "\u2122", "\u2026", "\u221E",
-            "\u00A5", "\u20AC", "\u00A3", "\u0192", "$",
-            "\u2264", "\u2265", "\u2211", "\u00AB", "\u00BB",
-            "\u00E7", "\u222B", "\u00B5", "\u25CA", "\u0131",
-            "\u2206", "\u03A9", "\u2248", "*", "\u00A7",
-            "\u2022", "\u00B6", "\u00AC", "\u2020", "&",
-            "\u00A1", "\u00BF", "\u00F8", "\u00E5", "\u2202",
+            "\u2648", "\u2649", "\u264A", "\u264B", "\u264C",
+            "\u264D", "\u264E", "\u264F", "\u2650", "\u2651",
+            "\u2652", "\u2653", "\u221E", "\u203D", "\u2206",
             "\u0153", "\u00C6", "\u00E6", "\u03C0", "\u00DF",
+            "\u2127", "\u03A9", "\u00E7", "\u222B", "\u00B5",
+            "\u2022", "\u00B6", "\u2202", "\u00A7", "\u00E5",
+            "\u00AB", "\u00BB", "\u00A1", "\u00BF", "\u25CA",
         };
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/DejaVuSans.ttf");
         TableLayout table = (TableLayout) findViewById(R.id.table3);

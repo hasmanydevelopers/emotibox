@@ -1,20 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="0dp">
-        <TabWidget
-            android:id="@android:id/tabs"
+        android:layout_height="fill_parent">
+        
+        <TableLayout
+			    android:layout_height="wrap_content"
+			    android:layout_width="fill_parent"
+			    android:layout_gravity="center"
+			    android:baselineAligned="true"
+			    android:isScrollContainer="true"
+			    android:background="#333333"
+			    android:stretchColumns="1">
+			
+				    <TableRow>
+              <TextView
+              android:id="@+id/tab_left"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_gravity="left"
+					    android:textSize="30sp" />
+					    
+					    <TextView
+					    android:id="@+id/tab_center"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_gravity="center"
+					    android:textSize="30sp" />
+					
+					    <TextView
+					    android:id="@+id/tab_right"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:layout_gravity="right"
+					    android:textSize="30sp" />
+					  </TableRow>
+					  
+          </TableLayout>
+          
+          <com.hmd.emotibox.PanelSwitcher
+            android:id="@+id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_height="fill_parent"
+            android:paddingTop="10dip" >
+            
+            <ScrollView
+                android:id="@+id/tab_01"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+                <TableLayout 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:stretchColumns="*"
+                    android:id="@+id/table1" >
+                </TableLayout>
+            </ScrollView>
+            
+            <ScrollView
+                android:id="@+id/tab_02"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+                <TableLayout 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:stretchColumns="*"
+                    android:id="@+id/table2" >
+                </TableLayout>
+            </ScrollView>
+            
+            <ScrollView
+                android:id="@+id/tab_03"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+                <TableLayout 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:stretchColumns="*"
+                    android:id="@+id/table3" >
+                </TableLayout>
+            </ScrollView>
+            
+            <ScrollView
+                android:id="@+id/tab_04"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+                <TableLayout 
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:stretchColumns="*"
+                    android:id="@+id/table4" >
+                </TableLayout>
+            </ScrollView>
+            
+        </com.hmd.emotibox.PanelSwitcher>
     </LinearLayout>
-</TabHost>
