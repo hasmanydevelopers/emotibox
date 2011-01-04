@@ -15,12 +15,15 @@ import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.app.Dialog;
 import android.app.AlertDialog;
+import android.database.Cursor;
+import android.util.Log;
 
 import com.hmd.emotibox.AboutDialog;
 
 public class FirstTabActivity extends Activity {
     final static public int ABOUT_DIALOG = 0x10000000;
     final static public int HELP_DIALOG = 0x20000000;
+    private DbAdapter mDbHelper;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,17 @@ public class FirstTabActivity extends Activity {
             });
             row.addView(button);
         }
+        
+        mDbHelper = new DbAdapter(this);
+        mDbHelper.open();
+        Cursor c = mDbHelper.fetchMostUsed();
+        Log.w("Emotibox", "Fetching most used");
+        c.moveToFirst();
+        while (!c.isLast()){
+            Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
+            c.moveToNext();
+        }
+        
     }
     
     public boolean onCreateOptionsMenu(Menu menu) {
