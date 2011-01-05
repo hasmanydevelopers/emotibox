@@ -24,6 +24,11 @@ public class FirstTabActivity extends Activity {
     final static public int ABOUT_DIALOG = 0x10000000;
     final static public int HELP_DIALOG = 0x20000000;
     private DbAdapter mDbHelper;
+    private Button btnMostUsed1;
+    private Button btnMostUsed2;
+    private Button btnMostUsed3;
+    private Button btnMostUsed4;
+    private Button btnMostUsed5;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,20 @@ public class FirstTabActivity extends Activity {
         TableLayout table = (TableLayout) findViewById(R.id.table1);
         
         TableRow row = new TableRow(this);
+        row.setBackgroundResource(R.color.white);
+        for (int i = 0; i < 5; i++){
+            Button button = new Button(this);
+            button.setHeight(55);
+            button.setWidth(55);
+            button.setText("");
+            button.setTag("");
+            button.setTextSize(25);
+            button.setTypeface(typeface);
+            row.addView(button);
+        }
+        table.addView(row, new TableLayout.LayoutParams(
+                LayoutParams.FILL_PARENT,
+                LayoutParams.WRAP_CONTENT));
         for (int i = 0; i < chars.length; i++){
             if ((i % 5 == 0) | (i == 0)){
                 row = new TableRow(this);
@@ -67,16 +86,21 @@ public class FirstTabActivity extends Activity {
             row.addView(button);
         }
         
+        Log.d("Emotibox", "Fetching most used");
         mDbHelper = new DbAdapter(this);
         mDbHelper.open();
         Cursor c = mDbHelper.fetchMostUsed();
-        Log.w("Emotibox", "Fetching most used");
-        c.moveToFirst();
-        while (!c.isLast()){
-            Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
-            c.moveToNext();
+        if (c != null) {
+            int count = c.getCount();
+            Log.d("Emotibox", "Processing " + count + " records");
+            c.moveToFirst();
+            if (count > 0){
+                while (!c.isLast()){
+                    Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
+                    c.moveToNext();
+                }
+            }
         }
-        
     }
     
     public boolean onCreateOptionsMenu(Menu menu) {
