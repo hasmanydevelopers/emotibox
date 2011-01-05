@@ -17,6 +17,7 @@ import android.app.Dialog;
 import android.app.AlertDialog;
 import android.database.Cursor;
 import android.util.Log;
+import android.graphics.Color;
 
 import com.hmd.emotibox.AboutDialog;
 
@@ -24,11 +25,6 @@ public class FirstTabActivity extends Activity {
     final static public int ABOUT_DIALOG = 0x10000000;
     final static public int HELP_DIALOG = 0x20000000;
     private DbAdapter mDbHelper;
-    private Button btnMostUsed1;
-    private Button btnMostUsed2;
-    private Button btnMostUsed3;
-    private Button btnMostUsed4;
-    private Button btnMostUsed5;
     
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +43,7 @@ public class FirstTabActivity extends Activity {
         TableLayout table = (TableLayout) findViewById(R.id.table1);
         
         TableRow row = new TableRow(this);
-        row.setBackgroundResource(R.color.white);
+        row.setBackgroundResource(android.R.color.white);
         for (int i = 0; i < 5; i++){
             Button button = new Button(this);
             button.setHeight(55);
