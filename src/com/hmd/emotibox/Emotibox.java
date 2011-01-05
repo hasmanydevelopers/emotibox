@@ -29,6 +29,8 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.util.Log;
 
+import android.graphics.Color;
+
 
 public class Emotibox extends Activity{
 
@@ -40,11 +42,6 @@ public class Emotibox extends Activity{
     final static public int ABOUT_DIALOG = 0x10000000;
     final static public int HELP_DIALOG = 0x20000000;
     
-//    private GestureDetector gestureDetector;
-//    View.OnTouchListener gestureListener;
-    
-//    private TabHost tabHost;
-
     private PanelSwitcher panel;
     private TextView tabLeft;
     private TextView tabCenter;
@@ -96,7 +93,6 @@ public class Emotibox extends Activity{
         super.onCreate(savedInstanceState);        
         setContentView(R.layout.main);
         
-        
         Resources res = getResources(); // Resource object to get Drawables
         typeface = Typeface.createFromAsset(getAssets(),"fonts/DejaVuSans.ttf");
         tableLay = new TableLayout[MAX_TAB];
@@ -105,8 +101,7 @@ public class Emotibox extends Activity{
         tableLay[2] = (TableLayout) findViewById(R.id.table3);
         tableLay[3] = (TableLayout) findViewById(R.id.table4);
         
-        
-        
+        //override the default gestureListener of the panelSwitcher
         panel = (PanelSwitcher) findViewById(R.id.tabcontent);
         panel.setGestureDetector( new GestureDetector(Emotibox.this, new GestureDetector.SimpleOnGestureListener() {
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
@@ -130,6 +125,7 @@ public class Emotibox extends Activity{
             }
         }));
         
+        //set the title bar
         tabLeft = (TextView) findViewById(R.id.tab_left);
         tabLeft.setTypeface(typeface);
         tabLeft.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +138,6 @@ public class Emotibox extends Activity{
         tabCenter = (TextView) findViewById(R.id.tab_center);
         tabCenter.setTypeface(typeface);
         tabCenter.setText( chars[0][0] );
-
         
         tabRight = (TextView) findViewById(R.id.tab_right);
         tabRight.setTypeface(typeface);
@@ -155,8 +150,8 @@ public class Emotibox extends Activity{
         });
         
         
-        
-        for(int i=0; i < MAX_TAB; i++){
+        // set the content of all pages in the panelSwitcher
+        for(int i=0; i < MAX_TAB; i++){ 
         
             TableLayout table = tableLay[i];
             
@@ -168,13 +163,17 @@ public class Emotibox extends Activity{
                             LayoutParams.FILL_PARENT,
                             LayoutParams.WRAP_CONTENT));
                 }
+                
                 Button button = new Button(this);
-                button.setHeight(50);
-                button.setWidth(50);
+                button.setHeight(60);
+                button.setWidth(10);
                 button.setText(chars[i][j]);
                 button.setTag(chars[i][j]);
                 button.setTextSize(25);
                 button.setTypeface(typeface);
+                button.setTextColor(Color.rgb( 0xff, 0x99, 0x00 ) );
+                button.setBackgroundResource(R.drawable.btn_custom);
+                
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -198,9 +197,7 @@ public class Emotibox extends Activity{
                 
                 row.addView(button);
             }
-        
         }
-        
         
     }
     
@@ -269,6 +266,4 @@ public class Emotibox extends Activity{
     }
 
 }
-
-
 
