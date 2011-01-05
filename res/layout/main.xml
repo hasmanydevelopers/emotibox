@@ -6,7 +6,7 @@
         android:layout_height="fill_parent" >
         
           <RelativeLayout 
-            android:background="#303030"
+            android:background="#101010"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -16,7 +16,7 @@
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
 					    android:layout_alignParentLeft="true"
-					    android:textColor="#ff9900"
+					    android:textColor="#ff6600"
 					    android:textSize="30sp" />
 					    
 					    <TextView
@@ -24,7 +24,7 @@
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
 					    android:layout_centerHorizontal="true"
-					    android:textColor="#ff6600"
+					    android:textColor="#ff9900"
 					    android:textSize="30sp" />
 					
 					    <TextView
@@ -32,7 +32,7 @@
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
 					    android:layout_alignParentRight="true"
-					    android:textColor="#ff9900"
+					    android:textColor="#ff6600"
 					    android:textSize="30sp" />
 					  
           </RelativeLayout>

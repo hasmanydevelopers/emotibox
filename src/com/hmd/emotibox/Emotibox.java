@@ -30,6 +30,7 @@ import android.view.MotionEvent;
 import android.util.Log;
 
 import android.graphics.Color;
+import android.view.Gravity;
 
 
 public class Emotibox extends Activity{
@@ -165,14 +166,15 @@ public class Emotibox extends Activity{
                 }
                 
                 Button button = new Button(this);
-                button.setHeight(60);
-                button.setWidth(10);
+                button.setHeight(50);
+                button.setWidth(50);
                 button.setText(chars[i][j]);
                 button.setTag(chars[i][j]);
                 button.setTextSize(25);
                 button.setTypeface(typeface);
-                button.setTextColor(Color.rgb( 0xff, 0x99, 0x00 ) );
+                button.setTextColor(Color.WHITE );
                 button.setBackgroundResource(R.drawable.btn_custom);
+                button.setGravity( Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL );
                 
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
