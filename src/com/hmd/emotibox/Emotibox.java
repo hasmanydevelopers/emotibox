@@ -51,6 +51,7 @@ public class Emotibox extends Activity{
     private DbAdapter mDbHelper;
     
     String mostUsed[] = {"", "", "", "", ""};
+    Button btnMostUsed[] = {null, null, null, null, null};
     Typeface typeface; 
     TableLayout[] tableLay;
     
@@ -153,27 +154,8 @@ public class Emotibox extends Activity{
             }
         });
         
-        // Fetching most used characters from DB
-        Log.d("Emotibox", "Fetching most used");
         mDbHelper = new DbAdapter(this);
         mDbHelper.open();
-        Cursor c = mDbHelper.fetchMostUsed();
-        if (c != null) {
-            int i = 0;
-            int count = c.getCount();
-            boolean remain = true;
-            Log.d("Emotibox", "Processing " + count + " records");
-            if (count > 0){
-                c.moveToFirst();
-                while (remain){
-                    Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
-                    mostUsed[i] = int2str(c.getInt(0));
-                    remain = c.moveToNext();
-                    i++;
-                }
-            }
-        }
-        c.close();
         
         // set the content of all pages in the panelSwitcher
         for(int i=0; i < MAX_TAB; i++){ 
@@ -187,14 +169,10 @@ public class Emotibox extends Activity{
                     Button button = new Button(this);
                     button.setHeight(55);
                     button.setWidth(55);
-                    button.setText(mostUsed[x]);
-                    button.setTag(mostUsed[x]);
                     button.setTextSize(25);
                     button.setTypeface(typeface);
-                    if (mostUsed[x] == ""){
-                        button.setClickable(false);
-                    }
-                    row.addView(button);
+                    btnMostUsed[x] = button;
+                    row.addView(btnMostUsed[x]);
                 }
                 table.addView(row, new TableLayout.LayoutParams(
                         LayoutParams.FILL_PARENT,
@@ -229,6 +207,7 @@ public class Emotibox extends Activity{
                         Log.d("Emotibox", "Updating unicode char " + charCode);
                         Log.d("Emotibox", "Converting back to str " + strBack);
                         mDbHelper.updateRecord(charCode);
+                        updateMostUsed();
                     }
                 });
                 
@@ -247,6 +226,8 @@ public class Emotibox extends Activity{
                 row.addView(button);
             }
         }
+        
+        updateMostUsed();
         
     }
     
@@ -320,6 +301,34 @@ public class Emotibox extends Activity{
     
     private String int2str(int charCode){
         return Character.toString((char) charCode);
+    }
+    
+    private void updateMostUsed(){
+        Log.d("Emotibox", "Fetching most used");
+        Cursor c = mDbHelper.fetchMostUsed();
+        if (c != null) {
+            int i = 0;
+            int count = c.getCount();
+            boolean remain = true;
+            Log.d("Emotibox", "Processing " + count + " records");
+            if (count > 0){
+                c.moveToFirst();
+                while (remain){
+                    Log.d("Emotibox --MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
+                    mostUsed[i] = int2str(c.getInt(0));
+                    remain = c.moveToNext();
+                    i++;
+                }
+            }
+        }
+        c.close();
+        for (int x = 0; x < 5; x++){
+            btnMostUsed[x].setText(mostUsed[x]);
+            btnMostUsed[x].setTag(mostUsed[x]);
+            if (mostUsed[x] == ""){
+                btnMostUsed[x].setClickable(false);
+            }
+        }
     }
 
 }
