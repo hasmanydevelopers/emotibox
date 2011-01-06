@@ -12,29 +12,29 @@
 
 
               <TextView
-              android:id="@+id/tab_left"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:layout_alignParentLeft="true"
-					    android:textColor="#ff9900"
-					    android:textSize="30sp" />
-					    
-					    <TextView
-					    android:id="@+id/tab_center"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:layout_centerHorizontal="true"
-					    android:textColor="#ff6600"
-					    android:textSize="30sp" />
-					
-					    <TextView
-					    android:id="@+id/tab_right"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:layout_alignParentRight="true"
-					    android:textColor="#ff9900"
-					    android:textSize="30sp" />
-					  
+                android:id="@+id/tab_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="#ff9900"
+                android:textSize="30sp" />
+
+                <TextView
+                android:id="@+id/tab_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ff6600"
+                android:textSize="30sp" />
+
+                <TextView
+                android:id="@+id/tab_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="#ff9900"
+                android:textSize="30sp" />
+                
           </RelativeLayout>
           
           <com.hmd.emotibox.PanelSwitcher

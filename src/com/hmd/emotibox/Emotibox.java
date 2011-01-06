@@ -6,7 +6,7 @@ import android.app.Activity;
 import android.widget.TabHost;
 import android.content.Intent;
 import android.widget.TextView;
-import android.app.TabActivity;
+//import android.app.TabActivity;
 
 import android.widget.Toast;
 import android.widget.Button;
@@ -31,6 +31,8 @@ import android.util.Log;
 
 import android.graphics.Color;
 
+import android.database.Cursor;
+
 
 public class Emotibox extends Activity{
 
@@ -46,7 +48,9 @@ public class Emotibox extends Activity{
     private TextView tabLeft;
     private TextView tabCenter;
     private TextView tabRight;
+    private DbAdapter mDbHelper;
     
+    String mostUsed[] = {"", "", "", "", ""};
     Typeface typeface; 
     TableLayout[] tableLay;
     
@@ -149,6 +153,25 @@ public class Emotibox extends Activity{
             }
         });
         
+        // Fetching most used characters from DB
+        Log.d("Emotibox", "Fetching most used");
+        mDbHelper = new DbAdapter(this);
+        mDbHelper.open();
+        Cursor c = mDbHelper.fetchMostUsed();
+        if (c != null) {
+            int i = 0;
+            int count = c.getCount();
+            Log.d("Emotibox", "Processing " + count + " records");
+            c.moveToFirst();
+            if (count > 0){
+                while (!c.isLast()){
+                    Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
+                    mostUsed[i] = Integer.toString(c.getInt(0));
+                    c.moveToNext();
+                    i++;
+                }
+            }
+        }
         
         // set the content of all pages in the panelSwitcher
         for(int i=0; i < MAX_TAB; i++){ 
@@ -156,6 +179,25 @@ public class Emotibox extends Activity{
             TableLayout table = tableLay[i];
             
             TableRow row = new TableRow(this);
+            if (i == 0){
+                row.setBackgroundResource(android.R.color.white);
+                for (int x = 0; x < 5; x++){
+                    Button button = new Button(this);
+                    button.setHeight(55);
+                    button.setWidth(55);
+                    button.setText(mostUsed[x]);
+                    button.setTag(mostUsed[x]);
+                    button.setTextSize(25);
+                    button.setTypeface(typeface);
+                    if (mostUsed[x] == ""){
+                        button.setClickable(false);
+                    }
+                    row.addView(button);
+                }
+                table.addView(row, new TableLayout.LayoutParams(
+                        LayoutParams.FILL_PARENT,
+                        LayoutParams.WRAP_CONTENT));
+            }
             for (int j = 0; j < chars[i].length; j++){
                 if ((j % 5 == 0) | (j == 0)){
                     row = new TableRow(this);
@@ -165,14 +207,14 @@ public class Emotibox extends Activity{
                 }
                 
                 Button button = new Button(this);
-                button.setHeight(60);
-                button.setWidth(10);
+                button.setHeight(55);
+                button.setWidth(55);
                 button.setText(chars[i][j]);
                 button.setTag(chars[i][j]);
                 button.setTextSize(25);
                 button.setTypeface(typeface);
-                button.setTextColor(Color.rgb( 0xff, 0x99, 0x00 ) );
-                button.setBackgroundResource(R.drawable.btn_custom);
+                /*button.setTextColor(Color.rgb( 0xff, 0x99, 0x00 ) );
+                button.setBackgroundResource(R.drawable.btn_custom);*/
                 
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -180,6 +222,9 @@ public class Emotibox extends Activity{
                         String ch = v.getTag().toString();
                         Toast.makeText(Emotibox.this, "Copied: " + ch, Toast.LENGTH_SHORT).show();
                         cm.setText(ch);
+                        int unicode = Integer.parseInt(ch);
+                        Log.d("Emotibox", "Updating unicode char " + unicode);
+                        mDbHelper.updateRecord(unicode);
                     }
                 });
                 
