@@ -50,7 +50,7 @@ public class Emotibox extends Activity{
     private TextView tabRight;
     private DbAdapter mDbHelper;
     
-    int mostUsed[] = {0, 0, 0, 0, 0};
+    String mostUsed[] = {"", "", "", "", ""};
     Typeface typeface; 
     TableLayout[] tableLay;
     
@@ -161,13 +161,14 @@ public class Emotibox extends Activity{
         if (c != null) {
             int i = 0;
             int count = c.getCount();
+            boolean remain = true;
             Log.d("Emotibox", "Processing " + count + " records");
-            c.moveToFirst();
             if (count > 0){
-                while (!c.isLast()){
+                c.moveToFirst();
+                while (remain){
                     Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
-                    //mostUsed[i] = Integer.toString(c.getInt(0));
-                    c.moveToNext();
+                    mostUsed[i] = int2str(c.getInt(0));
+                    remain = c.moveToNext();
                     i++;
                 }
             }
@@ -183,16 +184,17 @@ public class Emotibox extends Activity{
             if (i == 0){
                 row.setBackgroundResource(android.R.color.white);
                 for (int x = 0; x < 5; x++){
-                    if (mostUsed[x] != 0){
-                        Button button = new Button(this);
-                        button.setHeight(55);
-                        button.setWidth(55);
-                        button.setText(mostUsed[x]);
-                        button.setTag(mostUsed[x]);
-                        button.setTextSize(25);
-                        button.setTypeface(typeface);
-                        row.addView(button);
+                    Button button = new Button(this);
+                    button.setHeight(55);
+                    button.setWidth(55);
+                    button.setText(mostUsed[x]);
+                    button.setTag(mostUsed[x]);
+                    button.setTextSize(25);
+                    button.setTypeface(typeface);
+                    if (mostUsed[x] == ""){
+                        button.setClickable(false);
                     }
+                    row.addView(button);
                 }
                 table.addView(row, new TableLayout.LayoutParams(
                         LayoutParams.FILL_PARENT,

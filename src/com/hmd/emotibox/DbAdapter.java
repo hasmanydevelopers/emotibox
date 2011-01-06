@@ -89,8 +89,9 @@ public class DbAdapter {
     public boolean updateRecord(long rowId) {
         Cursor mCursor = fetchRecord(rowId);
         int value = 0;
+        int count = mCursor.getCount();
         
-        if (mCursor == null) {
+        if ((mCursor == null) || (count == 0)){
             createRecord(rowId);
         }
         else{
