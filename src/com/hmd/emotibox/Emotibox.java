@@ -118,11 +118,9 @@ public class Emotibox extends Activity{
                 // as it may conflict with a button push
                 if (Math.abs(dx) > MAJOR_MOVE && Math.abs(velocityX) > Math.abs(velocityY)) {
                     if (velocityX > 0) {
-                        panel.moveRight();
-                        setTabTitle( panel.getCurrentIndex() );
+                        moveRight();
                     } else {
-                        panel.moveLeft();
-                        setTabTitle( panel.getCurrentIndex() );
+                        moveLeft();
                     }
                     return true;
                 } else {
@@ -136,8 +134,7 @@ public class Emotibox extends Activity{
         tabLeft.setTypeface(typeface);
         tabLeft.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                panel.moveRight();
-                setTabTitle( panel.getCurrentIndex() );
+                moveRight();
             }
         });
                 
@@ -150,8 +147,7 @@ public class Emotibox extends Activity{
         tabRight.setText( chars[1][0] + chars[2][0] + chars[3][0] );
         tabRight.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                panel.moveLeft();
-                setTabTitle( panel.getCurrentIndex() );
+                moveLeft();
             }
         });
         
@@ -164,21 +160,6 @@ public class Emotibox extends Activity{
             TableLayout table = tableLay[i];
             
             TableRow row = new TableRow(this);
-            if (i == 0){
-                row.setBackgroundResource(android.R.color.white);
-                for (int x = 0; x < 5; x++){
-                    Button button = new Button(this);
-                    button.setHeight(55);
-                    button.setWidth(55);
-                    button.setTextSize(25);
-                    button.setTypeface(typeface);
-                    btnMostUsed[x] = button;
-                    row.addView(btnMostUsed[x]);
-                }
-                table.addView(row, new TableLayout.LayoutParams(
-                        LayoutParams.FILL_PARENT,
-                        LayoutParams.WRAP_CONTENT));
-            }
             for (int j = 0; j < chars[i].length; j++){
                 if ((j % 5 == 0) | (j == 0)){
                     row = new TableRow(this);
@@ -189,13 +170,13 @@ public class Emotibox extends Activity{
                 
                 Button button = new Button(this);
                 button.setHeight(50);
-                button.setWidth(50);
+                button.setWidth(55);
                 button.setText(chars[i][j]);
                 button.setTag(chars[i][j]);
                 button.setTextSize(25);
                 button.setTypeface(typeface);
                 button.setTextColor(Color.WHITE );
-                button.setBackgroundResource(R.drawable.btn_custom);
+                button.setBackgroundResource(R.drawable.btn_bg_black);
                 button.setGravity( Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL );
                 
                 button.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +208,44 @@ public class Emotibox extends Activity{
                 
                 row.addView(button);
             }
+            
+            row = new TableRow(this);
+            if (i == 0){
+                row.setPadding( 0, 10, 0, 10 );
+                for (int x = 0; x < 5; x++){
+                    Button button = new Button(this);
+                    button.setHeight(50);
+                    button.setWidth(55);
+                    button.setTextSize(25);
+                    button.setTypeface(typeface);
+                    button.setTextColor(Color.WHITE );
+                    button.setBackgroundResource(R.drawable.btn_bg_orange);
+                    button.setGravity( Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL );
+                    
+                    button.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                            String strChar = v.getTag().toString();
+                            int charCode = str2int(strChar);
+                            Toast.makeText(Emotibox.this, "Copied: " + strChar, Toast.LENGTH_SHORT).show();
+                            cm.setText(strChar);
+                            String strBack = int2str(charCode);
+                            Log.d("Emotibox", "Updating unicode char " + charCode);
+                            Log.d("Emotibox", "Converting back to str " + strBack);
+                            mDbHelper.updateRecord(charCode);
+                            updateMostUsed();
+                        }
+                    });
+                    
+                    btnMostUsed[x] = button;
+                    row.addView(btnMostUsed[x]);
+                }
+                table.addView(row, new TableLayout.LayoutParams(
+                        LayoutParams.FILL_PARENT,
+                        LayoutParams.WRAP_CONTENT));
+            }
+            
+            
         }
         
         updateMostUsed();
@@ -331,6 +350,16 @@ public class Emotibox extends Activity{
                 btnMostUsed[x].setClickable(false);
             }
         }
+    }
+    
+    private void moveRight(){
+        panel.moveRight();
+        setTabTitle( panel.getCurrentIndex() );
+    }
+    
+    private void moveLeft(){
+        panel.moveLeft();
+        setTabTitle( panel.getCurrentIndex() );
     }
 
 }
