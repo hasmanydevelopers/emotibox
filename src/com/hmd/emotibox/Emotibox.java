@@ -50,7 +50,7 @@ public class Emotibox extends Activity{
     private TextView tabRight;
     private DbAdapter mDbHelper;
     
-    String mostUsed[] = {"", "", "", "", ""};
+    int mostUsed[] = {0, 0, 0, 0, 0};
     Typeface typeface; 
     TableLayout[] tableLay;
     
@@ -166,12 +166,13 @@ public class Emotibox extends Activity{
             if (count > 0){
                 while (!c.isLast()){
                     Log.w("--MostUsed", "Key: "+ c.getInt(0) + " - Value: " + c.getInt(1));
-                    mostUsed[i] = Integer.toString(c.getInt(0));
+                    //mostUsed[i] = Integer.toString(c.getInt(0));
                     c.moveToNext();
                     i++;
                 }
             }
         }
+        c.close();
         
         // set the content of all pages in the panelSwitcher
         for(int i=0; i < MAX_TAB; i++){ 
@@ -182,17 +183,16 @@ public class Emotibox extends Activity{
             if (i == 0){
                 row.setBackgroundResource(android.R.color.white);
                 for (int x = 0; x < 5; x++){
-                    Button button = new Button(this);
-                    button.setHeight(55);
-                    button.setWidth(55);
-                    button.setText(mostUsed[x]);
-                    button.setTag(mostUsed[x]);
-                    button.setTextSize(25);
-                    button.setTypeface(typeface);
-                    if (mostUsed[x] == ""){
-                        button.setClickable(false);
+                    if (mostUsed[x] != 0){
+                        Button button = new Button(this);
+                        button.setHeight(55);
+                        button.setWidth(55);
+                        button.setText(mostUsed[x]);
+                        button.setTag(mostUsed[x]);
+                        button.setTextSize(25);
+                        button.setTypeface(typeface);
+                        row.addView(button);
                     }
-                    row.addView(button);
                 }
                 table.addView(row, new TableLayout.LayoutParams(
                         LayoutParams.FILL_PARENT,
@@ -219,12 +219,14 @@ public class Emotibox extends Activity{
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                        String ch = v.getTag().toString();
-                        Toast.makeText(Emotibox.this, "Copied: " + ch, Toast.LENGTH_SHORT).show();
-                        cm.setText(ch);
-                        int unicode = Integer.parseInt(ch);
-                        Log.d("Emotibox", "Updating unicode char " + unicode);
-                        mDbHelper.updateRecord(unicode);
+                        String strChar = v.getTag().toString();
+                        int charCode = str2int(strChar);
+                        Toast.makeText(Emotibox.this, "Copied: " + strChar, Toast.LENGTH_SHORT).show();
+                        cm.setText(strChar);
+                        String strBack = int2str(charCode);
+                        Log.d("Emotibox", "Updating unicode char " + charCode);
+                        Log.d("Emotibox", "Converting back to str " + strBack);
+                        mDbHelper.updateRecord(charCode);
                     }
                 });
                 
@@ -308,6 +310,14 @@ public class Emotibox extends Activity{
             tabRight.setText( "" );
             break;
         }
+    }
+    
+    private int str2int(String strChar){
+        return (int) strChar.charAt(0);
+    }
+    
+    private String int2str(int charCode){
+        return Character.toString((char) charCode);
     }
 
 }
